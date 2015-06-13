@@ -1,0 +1,3 @@
+release=jessie
+packages=xorg,openbox,sudo,apt-utils,vim,raspi-copies-and-fills,rxvt-unicode,chromium,iceweasel,startx
+hostname=dash-test-01
