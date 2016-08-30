@@ -9,7 +9,7 @@ if [ -z "$(cat /etc/issue | grep "Debian GNU/Linux 8")" ]; then
     exit 1
 fi
 
-su -c "apt-get update && apt-get install $packages -y && adduser $USER sudo"
+su -c "apt-get update && apt-get install $packages -y && echo \"$USER    ALL=(ALL:ALL) ALL\" >> /etc/sudoers"
 #su - $USER
 #orig_group=$(id -g)
 #newgrp sudo
@@ -42,6 +42,6 @@ echo 'if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
     startx
 fi' >> ~/.bashrc
 echo 'https://www.google.com/' > ~/links-to-load.txt
-su -c "sed -i \"s/ExecStart.*/ExecStart=-\/sbin\/agetty -a $USER %I $TERM/g\" /etc/systemd/system/getty.target.wants/getty@tty1.service
-systemctl set-default multi-user.target
-reboot"
+sudo sed -i "s/ExecStart.*/ExecStart=-\/sbin\/agetty -a $USER %I $TERM/g" /etc/systemd/system/getty.target.wants/getty@tty1.service
+sudo systemctl set-default multi-user.target
+sudo reboot
