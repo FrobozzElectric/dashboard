@@ -1,7 +1,0 @@
-[pi2]
-kernel=vmlinuz-3.18.0-trunk-rpi2
-initramfs initrd.img-3.18.0-trunk-rpi2 followkernel
-Framebuffer_width=1280
-Framebuffer_height=720
-hdmi_mode=4
-display_rotate=0
