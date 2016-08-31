@@ -2,7 +2,9 @@
 
 set -e
 
-packages='sudo vim htop rxvt-unicode x11vnc chromium chromium-l10n xorg openbox unclutter xdotool'
+packages='sudo vim htop rxvt-unicode x11vnc chromium chromium-l10n xorg openbox unclutter xdotool figlet'
+ip=$(ip addr | grep 'inet ' | grep -v '127.0.0.1' | cut -d' ' -f6)
+hostname=$(hostname)
 
 if [ -z "$(cat /etc/issue | grep "Debian GNU/Linux 8")" ]; then 
     echo "This script was only written to run on Debian Jessie. Exiting..."
@@ -23,7 +25,7 @@ xset s off &
 xset -dpms &
 x11vnc -nap -wait 30 -noxdamage -display :0 -forever &
 unclutter -idle 1 -jitter 2 -root &
-urxvt &
+urxvt  -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
 #chromium-browser \
 chromium \
   --kiosk-mode \
