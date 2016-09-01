@@ -13,14 +13,14 @@ su -c "apt-get update && apt-get install $packages -y && echo \"$USER    ALL=(AL
 echo '#!/bin/bash
 
 links=( $(cat links-to-load.txt | grep -v ^#) )
-ip=$(ip addr | grep 'inet ' | grep -v '127.0.0.1' | cut -d' ' -f6)
-hostname=$(hostname)
 
-sed -i 's/"exited_cleanly":false/"exited_cleanly":true/g' $HOME/.config/chromium/Default/Preferences
+sed -i "s/"exited_cleanly":false/"exited_cleanly":true/g" $HOME/.config/chromium/Default/Preferences
 xset s off &
 xset -dpms &
 x11vnc -nap -wait 30 -noxdamage -display :0 -forever &
 unclutter -idle 1 -jitter 2 -root &
+ip=$(ip addr | grep "inet " | grep -v "127.0.0.1" | cut -d" " -f6)
+hostname=$(hostname)
 urxvt  -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
 chromium \
   --kiosk-mode \
@@ -32,7 +32,7 @@ chromium \
   --default-tile-width=384 \
   --default-tile-height=384 \
   $( echo ${links[@]} ) &
-sleep 15 && xdotool search --onlyvisible --class "Chromium" windowfocus key 'F11' &
+sleep 15 && xdotool search --onlyvisible --class "Chromium" windowfocus key F11 &
 openbox-session' > ~/.xsession
 echo 'if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
     startx
