@@ -14,12 +14,19 @@ echo '#!/bin/bash
 
 links=( $(cat links-to-load.txt | grep -v ^#) )
 
+get_ip() {
+    ip addr | grep "inet " | grep -v "127.0.0.1" | cut -d" " -f6
+}
+
 sed -i "s/"exited_cleanly":false/"exited_cleanly":true/g" $HOME/.config/chromium/Default/Preferences
 xset s off &
 xset -dpms &
 x11vnc -nap -wait 30 -noxdamage -display :0 -forever &
 unclutter -idle 1 -jitter 2 -root &
-ip=$(ip addr | grep "inet " | grep -v "127.0.0.1" | cut -d" " -f6)
+ip=$(get_ip)
+while [ -z $ip ]; do
+    ip=$(get_ip)
+done
 hostname=$(hostname)
 urxvt  -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
 chromium \
