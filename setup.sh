@@ -18,7 +18,6 @@ get_ip() {
     ip addr | grep "inet " | grep -v "127.0.0.1" | cut -d" " -f6
 }
 
-sed -i "s/"exited_cleanly":false/"exited_cleanly":true/g" $HOME/.config/chromium/Default/Preferences
 xset s off &
 xset -dpms &
 x11vnc -nap -wait 30 -noxdamage -display :0 -forever &
@@ -34,10 +33,12 @@ chromium \
   --auto-launch-at-startup \
   --disable-hang-monitor \
   --disable-session-crashed-bubble \
+  --disable-infobars \
   --disable-cache \
   --disable-canvas-aa \
   --default-tile-width=384 \
   --default-tile-height=384 \
+  --disk-cache-dir="/dev/shm/" \
   $( echo ${links[@]} ) &
 sleep 15 && xdotool search --onlyvisible --class "Chromium" windowfocus key F11 &
 openbox-session' > ~/.xsession
