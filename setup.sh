@@ -4,7 +4,7 @@ set -e
 
 packages='sudo vim htop rxvt-unicode x11vnc chromium chromium-l10n xorg openbox unclutter xdotool figlet screen wmctrl'
 
-if [ -z "$(cat /etc/issue | grep "Debian GNU/Linux 8")" ]; then 
+if [ -z "$(grep "Debian GNU/Linux 8" /etc/issue)" ]; then 
     echo "This script was only written to run on Debian Jessie. Exiting..."
     exit 1
 fi
