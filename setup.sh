@@ -33,7 +33,7 @@ echo 'if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
     startx
 fi
 
-chromium-start () {
+chromium-start() {
     export DISPLAY=:0
     links=( $(cat ~/links-to-load.txt | grep -v ^#) )
     screen -dm chromium \
@@ -48,7 +48,7 @@ chromium-start () {
       $( echo ${links[@]} )
 }
 
-chromium-stop () {
+chromium-stop() {
     export DISPLAY=:0
     wmctrl -c chromium
 }' >> ~/.bashrc
