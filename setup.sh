@@ -23,7 +23,7 @@ links=( $(cat links-to-load.txt | grep -v ^#) )
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/g' $HOME/.config/chromium/Default/Preferences
 xset s off &
 xset -dpms &
-x11vnc -nap -wait 30 -noxdamage -display :0 -forever &
+x11vnc -nap -wait 30 -noxdamage -display $DISPLAY -forever &
 unclutter -idle 1 -jitter 2 -root &
 urxvt  -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
 #chromium-browser \
