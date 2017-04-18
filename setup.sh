@@ -33,7 +33,7 @@ chromium-start
 sleep 15 && xdotool search --onlyvisible --class "Chromium" windowfocus key F11 &
 openbox-session' > ~/.xsession
 
-# This creates the .bashrc file
+# This adds to the .bashrc file
 echo 'if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
     startx
 fi
