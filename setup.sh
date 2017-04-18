@@ -29,7 +29,7 @@ while [ -z $ip ]; do
     ip=$(get_ip)
 done
 hostname=$(hostname)
-urxvt  -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
+urxvt -e bash -c "echo -e \"hostname: $hostname\\nip: $ip\" | figlet; bash" &
 chromium-start
 sleep 15 && xdotool search --onlyvisible --class "Chromium" windowfocus key F11 &
 openbox-session' > ~/.xsession
