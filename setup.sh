@@ -22,7 +22,7 @@ get_ip() {
 echo $DISPLAY > ~/DISPLAY
 xset s off
 xset -dpms
-x11vnc -q -nap -wait 30 -noxdamage -display $DISPLAY -forever -shared -nopw -o ~/vnc.log -bg
+x11vnc -nap -wait 30 -noxdamage -display $DISPLAY -forever -shared -nopw -o ~/vnc.log -bg
 unclutter -idle 1 -jitter 2 -root &
 ip=$(get_ip)
 while [ -z $ip ]; do
