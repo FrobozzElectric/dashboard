@@ -5,8 +5,8 @@ set -e
 # Check distro version and install packages
 packages='sudo vim htop rxvt-unicode x11vnc chromium chromium-l10n xorg openbox unclutter xdotool figlet screen wmctrl'
 
-if [ -z "$(grep "Debian GNU/Linux 8" /etc/issue)" ]; then 
-    echo "This script was only written to run on Debian Jessie. Exiting..."
+if [ -z "$(grep -E "Debian GNU/Linux [8,9]" /etc/issue)" ]; then
+    echo "This script was only written to run on Debian 8 and 9. Exiting..."
     exit 1
 fi
 
